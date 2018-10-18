@@ -1,27 +1,29 @@
 import { Action } from 'redux';
-import { toDoItemTypes } from './toDoItemsTypes';
+import { toDoItemsTypes } from './toDoItemsTypes';
 
 export type State = {
-  toDoList: toDoItemTypes[];
-  index: number;
+  todo: {
+    toDoItems: toDoItemsTypes[];
+    index: number;
+  };
 };
 
 export interface AddItemAction extends Action {
-  type: 'ADD_ITEM';
+  type: string;
   payload: {
     text: string;
   };
 }
 
 export interface RemoveItemAction extends Action {
-  type: 'REMOVE_ITEM';
+  type: string;
   payload: {
     id: number;
   };
 }
 
 export interface ChangeStatusItemAction extends Action {
-  type: 'CHANGE_STATUS_ITEM';
+  type: string;
   payload: {
     id: number;
   };

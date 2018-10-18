@@ -8,11 +8,7 @@ import store from '../../store';
 const App = () => {
   return (
     <Provider store={store}>
-      <ToDoPage
-        removeItem={() => {}}
-        addItem={(text: string) => {}}
-        changeStatusItem={() => {}}
-      />
+      <ToDoPage />
     </Provider>
   );
 };

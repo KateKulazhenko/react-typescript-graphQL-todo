@@ -4,7 +4,7 @@ interface Props {
   handleSubmit(e: any): void;
 }
 
-const ToDoAddItem: React.StatelessComponent<Props> = ({ handleSubmit }) => {
+const ToDoAddItem = ({ handleSubmit }: Props) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -12,6 +12,7 @@ const ToDoAddItem: React.StatelessComponent<Props> = ({ handleSubmit }) => {
         name="newItem"
         placeholder="Add new ToDo item"
         required={true}
+        ref="text"
       />
       <button type="submit">Add</button>
     </form>
