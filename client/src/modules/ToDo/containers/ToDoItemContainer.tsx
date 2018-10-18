@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { toDoItemTypes } from '../../../reducers/toDoItemsTypes';
+import { toDoItemsTypes } from '../../../reducers/toDoItemsTypes';
 
-import ToDoItem from '../views/ToDoItem';
+import ToDoItems from '../views/ToDoItems';
+import { any } from 'prop-types';
 
 interface Props {
-  toToItem: toDoItemTypes;
-  onChangedStatus(id: number): void;
+  toDoItem: toDoItemsTypes[];
+  changeStatusItem(id: number): void;
   onRemoveItem(id: number): void;
 }
 
-class ToDoItemContainer extends React.Component<Props> {
+class ToDoItemsContainer extends React.Component<Props> {
   constructor(props: any) {
     super(props);
 
@@ -18,22 +19,25 @@ class ToDoItemContainer extends React.Component<Props> {
   }
 
   handleChange() {
-    const { onChangedStatus, toToItem } = this.props;
+    const { changeStatusItem, toDoItem } = this.props;
 
-    onChangedStatus(toToItem.id);
+    changeStatusItem(toDoItem.id);
   }
 
   handleRemoveItem() {
-    const { onRemoveItem, toToItem } = this.props;
+    const { onRemoveItem, toDoItem } = this.props;
+
+    onRemoveItem(toDoItem.id);
   }
 
   render(): any {
     const props = {
+      toDoItems: this.props.toDoItem,
       handleChange: this.handleChange,
-      handleRemoveItem: this.handleRemoveItem,
+      handleRemove: this.handleRemoveItem,
     };
-    return null;
+    return <ToDoItems {...props} />;
   }
 }
 
-export default ToDoItemContainer;
+export default ToDoItemsContainer;

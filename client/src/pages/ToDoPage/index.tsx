@@ -2,21 +2,19 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { toDoItemTypes } from '../../reducers/toDoItemsTypes';
+import { toDoItemsTypes } from '../../reducers/toDoItemsTypes';
 import { State } from '../../reducers/reduxTypes';
 import * as actionCreators from '../../modules/ToDo/actions';
 
 import ToDoAddItem from '../../modules/ToDo/containers/ToDoAddItemContainer';
-import ToDoList from '../../modules/ToDo/containers/ToDoListContainer';
+import ToDoListContainer from '../../modules/ToDo/containers/ToDoListContainer';
 
 interface StateProps {
-  toDoItems: toDoItemTypes[];
+  toDoItems: toDoItemsTypes[];
 }
 
 interface DispatchProps {
-  addItem(text: string): void;
-  removeItem(id: number): void;
-  changeStatusItem(id: number): void;
+  actions: any;
 }
 
 type Props = StateProps & DispatchProps;
@@ -26,37 +24,29 @@ class ToDoPage extends React.Component<Props> {
     super(props);
 
     this.handleAddNewItem = this.handleAddNewItem.bind(this);
-    this.handleItemStatusChanged = this.handleItemStatusChanged.bind(this);
   }
 
   handleAddNewItem(text: string) {
-    this.props.addItem(text);
-  }
-
-  handleremoveItem(id: number) {
-    const { removeItem } = this.props;
-    removeItem(id);
-  }
-
-  handleItemStatusChanged(id: number) {
-    const { changeStatusItem } = this.props;
-    changeStatusItem(id);
+    this.props.actions.addItem(text);
   }
 
   render() {
-    console.log(this.props);
     return (
       <main>
         <ToDoAddItem onSubmit={this.handleAddNewItem} />
-        {/* <ToDoList toToItem={this.props.toDoItems} /> */}
+        <ToDoListContainer
+          toDoItems={this.props.toDoItems}
+          handleChange={this.props.actions.changeStatusItem}
+          handleRemove={this.props.actions.removeItem}
+        />
       </main>
     );
   }
 }
 
-const mapStateToProps = (state: State): StateProps => ({
-  toDoItems: state.toDoList,
-});
+const mapStateToProps = (state: any): StateProps => {
+  return { toDoItems: state.todo.toDoItems };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {

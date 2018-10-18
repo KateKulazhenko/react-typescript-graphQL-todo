@@ -13,21 +13,31 @@ interface State {
 class ToDoAddItemContainer extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { value: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.inputRef = React.createRef();
   }
+
+  private inputRef: React.RefObject<HTMLInputElement>;
 
   handleSubmit(e: React.FormEvent<any>) {
     e.preventDefault();
-    this.props.onSubmit(this.state.value);
-    this.setState({ value: '' });
+    this.props.onSubmit(this.inputRef.current.value);
+    this.inputRef.current.value = '';
   }
 
   render(): any {
-    const props = {
-      handleSubmit: this.handleSubmit,
-    };
-    return null;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          name="newItem"
+          placeholder="Add new ToDo item"
+          required={true}
+          ref={this.inputRef}
+        />
+        <button type="submit">Add</button>
+      </form>
+    );
   }
 }
 
