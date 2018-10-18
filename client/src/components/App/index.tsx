@@ -1,10 +1,20 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
-import { store } from '../../store';
+import ToDoPage from '../../pages/ToDoPage';
+
+import store from '../../store';
 
 const App = () => {
-  return <div>Hello world </div>;
+  return (
+    <Provider store={store}>
+      <ToDoPage
+        removeItem={() => {}}
+        addItem={(text: string) => {}}
+        changeStatusItem={() => {}}
+      />
+    </Provider>
+  );
 };
 
 export default App;

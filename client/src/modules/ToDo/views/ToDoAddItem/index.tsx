@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-const ToDoAddItem = ({ handleSubmit }) => {
+interface Props {
+  handleSubmit(e: any): void;
+}
+
+const ToDoAddItem: React.StatelessComponent<Props> = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
