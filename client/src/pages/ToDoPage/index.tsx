@@ -30,7 +30,7 @@ class ToDoPage extends React.Component<Props> {
     this.props.actions.addItem(text);
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <main>
         <ToDoAddItem onSubmit={this.handleAddNewItem} />
