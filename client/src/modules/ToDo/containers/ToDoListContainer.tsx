@@ -9,7 +9,7 @@ interface Props {
   handleRemove(id: number): void;
 }
 class ToDoListContainer extends React.Component<Props> {
-  render(): any {
+  render(): React.ReactNode {
     return (
       <ul>
         {this.props.toDoItems.map((item: any) => {

@@ -25,7 +25,7 @@ class ToDoAddItemContainer extends React.Component<Props, State> {
     this.inputRef.current.value = '';
   }
 
-  render(): any {
+  render(): React.ReactNode {
     return (
       <form onSubmit={this.handleSubmit}>
         <input

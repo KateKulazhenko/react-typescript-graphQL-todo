@@ -5,7 +5,7 @@ import ToDoItems from '../views/ToDoItems';
 import { any } from 'prop-types';
 
 interface Props {
-  toDoItem: toDoItemsTypes[];
+  toDoItem: toDoItemsTypes;
   changeStatusItem(id: number): void;
   onRemoveItem(id: number): void;
 }
@@ -30,9 +30,9 @@ class ToDoItemsContainer extends React.Component<Props> {
     onRemoveItem(toDoItem.id);
   }
 
-  render(): any {
+  render(): React.ReactNode {
     const props = {
-      toDoItems: this.props.toDoItem,
+      toDoItem: this.props.toDoItem,
       handleChange: this.handleChange,
       handleRemove: this.handleRemoveItem,
     };
